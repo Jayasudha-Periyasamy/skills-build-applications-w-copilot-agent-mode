@@ -7,11 +7,15 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         # Create Users
         user1, _ = User.objects.get_or_create(username='alice', email='alice@example.com')
+        user1.save()
         user2, _ = User.objects.get_or_create(username='bob', email='bob@example.com')
+        user2.save()
 
         # Create Teams
         team1, _ = Team.objects.get_or_create(name='Team Alpha')
+        team1.save()
         team1.members.add(user1, user2)
+        team1.save()
 
         # Create Activities
         Activity.objects.get_or_create(user=user1, activity_type='run', duration=30, calories_burned=250, date='2023-01-01')
